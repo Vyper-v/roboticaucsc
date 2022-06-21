@@ -13,12 +13,56 @@ Bricx Command Center esta limitado a computadores que tienen Windows como sistem
 2. Descomprime el archivo `test_release20111024.zip`
 3. Abre el archivo `BrixcCC.exe`
 
-# Modo de uso
+## Modo de uso
 
-Al abrir el archivo `BrixcCC.exe` 
+1. Al abrir el archivo `BrixcCC.exe`
+2. Conectar por usb el robot NXT
+3. Seleccionar puerto `usb`
+4. Seleccionar tipo de brick `NXT`
+5. Seleccionar Firmware `Standard`
+6. Crear un archivo nuevo con `Ctrl+N`
+7. Compilar con `F5`
 
+## Primer Hola Mundo
+Presiona `Ctrl+N` para crear un nuevo archivo y escribe lo siguiente:
 
+```c
+task main() {
+   OnFwd(OUT_A,50)
+   return 0;
+}
 ```
+
+###  `OnFwd(byte outputs,char pwr)`
+Hace funcionar los motores hacia adelante.
+
+Configure las salidas para invertir la dirección y enciéndalas.
+
+La función `OnFwd` recibe como parametros:
+
+ - `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
+ - `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
+
+###  `OnRev(byte outputs,char pwr)`
+Hace funcionar los motores hacia atrás.
+
+
+Configure las salidas para invertir la dirección y enciéndalas.
+
+La función `OnRev` recibe como parametros:
+
+ - `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
+ - `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
+
+### Ejemplo
+```c
+task main() {
+   OnFwd(OUT_A,50)
+   return 0;
+}
+```
+
+```c
 #define SPEED_FWD 75
 #define SPEED_REV 60
 #define WAIT_TIME 500
@@ -26,7 +70,7 @@ Al abrir el archivo `BrixcCC.exe`
 
 task main(){
      SetSensor(IN_1,SENSOR_TOUCH);
-     //Fwd(OUT_A,SPEED_FWD);
+     //OnFwd(OUT_A,SPEED_FWD);
      //Wait(WAIT_TIME);
      //OnRev(OUT_A,SPEED_REV);
      until(SENSOR_1 == true);
