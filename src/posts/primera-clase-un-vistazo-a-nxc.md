@@ -24,6 +24,7 @@ Bricx Command Center esta limitado a computadores que tienen Windows como sistem
 7. Compilar con `F5`
 
 ## Primer Hola Mundo
+
 Presiona `Ctrl+N` para crear un nuevo archivo y escribe lo siguiente:
 
 ```c
@@ -33,28 +34,30 @@ task main() {
 }
 ```
 
-###  `OnFwd(byte outputs,char pwr)`
+### `OnFwd(byte outputs,char pwr)`
+
 Hace funcionar los motores hacia adelante.
 
 Configure las salidas para invertir la dirección y enciéndalas.
 
 La función `OnFwd` recibe como parametros:
 
- - `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
- - `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
+* `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
+* `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
 
-###  `OnRev(byte outputs,char pwr)`
+### `OnRev(byte outputs,char pwr)`
+
 Hace funcionar los motores hacia atrás.
-
 
 Configure las salidas para invertir la dirección y enciéndalas.
 
 La función `OnRev` recibe como parametros:
 
- - `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
- - `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
+* `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
+* `pwr` : Potencia a la que el de salida tendrá, con un rango de `0 - 100`. Puede ser negativa para tener dirección reversa.
 
 ### Ejemplo
+
 ```c
 task main() {
    OnFwd(OUT_A,50)
@@ -73,6 +76,30 @@ task main(){
      //OnFwd(OUT_A,SPEED_FWD);
      //Wait(WAIT_TIME);
      //OnRev(OUT_A,SPEED_REV);
+     until(SENSOR_1 == true);
+     RotateMotor(OUT_A,SPEED_FWD,DEGREES);
+}
+```
+
+RotateMotor(OUT_A, SPEED_FWD, DEGREES); ??
+
+Hace funcionar los motores de rotación para girar
+
+La función RotateMotor recibe como parámetros:
+
+* `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
+* degrees: Rotación que ejecutara el motor de salida, con rangos de 0 a 360 para un giro completo, se puede agregar mas grados para dar mas vueltas, puede ser negativo para rotación inversa.
+
+  En el ejemplo se ve que cuando el sensor_1 indique true(que es un sensor de touch), procedera a mover el out_a con una velocidad speed_fwd y un angulo de degrees.
+
+```
+#define SPEED_FWD 75
+#define SPEED_REV 60
+#define WAIT_TIME 500
+#define DEGREES -90
+
+task main(){
+     SetSensor(IN_1,SENSOR_TOUCH);
      until(SENSOR_1 == true);
      RotateMotor(OUT_A,SPEED_FWD,DEGREES);
 }
