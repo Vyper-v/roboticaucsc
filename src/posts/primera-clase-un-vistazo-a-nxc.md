@@ -81,18 +81,18 @@ task main(){
 }
 ```
 
-RotateMotor(OUT_A, SPEED_FWD, DEGREES); ??
+### `RotateMotor(byte outputs, char pwr, long angle)`
 
 Hace funcionar los motores de rotación para girar
 
 La función RotateMotor recibe como parámetros:
 
 * `outputs` : Puerto de salida. Puedes encontrar los puertos disponibles [aqui](http://bricxcc.sourceforge.net/nbc/nxcdoc/nxcapi/group___output_port_constants.html)
-* degrees: Rotación que ejecutara el motor de salida, con rangos de 0 a 360 para un giro completo, se puede agregar mas grados para dar mas vueltas, puede ser negativo para rotación inversa.
+* `degrees`: Rotación que ejecutara el motor de salida, con rangos de 0 a 360 para un giro completo, se puede agregar mas grados para dar mas vueltas, puede ser negativo para rotación inversa.
 
   En el ejemplo se ve que cuando el sensor_1 indique true(que es un sensor de touch), procedera a mover el out_a con una velocidad speed_fwd y un angulo de degrees.
 
-```
+```c
 #define SPEED_FWD 75
 #define SPEED_REV 60
 #define WAIT_TIME 500
